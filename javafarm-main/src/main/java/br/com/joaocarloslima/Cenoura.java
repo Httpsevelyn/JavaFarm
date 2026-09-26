@@ -1,20 +1,21 @@
 package br.com.joaocarloslima;
 
 public class Cenoura {
+
     private int tamanho;
     private int tempoDeVida;
     private int tempoDeCrescimento;
 
     public Cenoura() {
         tamanho = 1;
-        tempoDeVida = 0;
+        tempoDeVida = 1;
         tempoDeCrescimento = 3;
     }
 
     public void crescer() {
         tempoDeVida++;
 
-        if (tempoDeVida % tempoDeCrescimento == 0 && tamanho < 4) {
+        if ((tempoDeVida - 1) % tempoDeCrescimento == 0 && tamanho < 4) {
             tamanho++;
         }
     }
@@ -39,4 +40,3 @@ public class Cenoura {
         return tempoDeCrescimento;
     }
 }
-

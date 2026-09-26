@@ -20,38 +20,50 @@ public class Fazenda {
     }
 
     public void plantarBatata(int x, int y) {
-        if (celeiro.getQtdeBatatas() <= 0) {
+        Terreno terreno = getTerreno(x, y);
+
+        if (celeiro.getQtdeBatatas() == 0) {
             throw new RuntimeException("Não há batatas no celeiro.");
         }
+        if (terreno.estaOcupado()) {
+            throw new RuntimeException("O terreno já está ocupado.");
+        }
 
-        Terreno terreno = getTerreno(x, y);
         terreno.plantar(new Batata());
         celeiro.consumirBatata();
     }
 
     public void plantarCenoura(int x, int y) {
-        if (celeiro.getQtdeCenouras() <= 0) {
+        Terreno terreno = getTerreno(x, y);
+
+        if (celeiro.getQtdeCenouras() == 0) {
             throw new RuntimeException("Não há cenouras no celeiro.");
         }
+        if (terreno.estaOcupado()) {
+            throw new RuntimeException("O terreno já está ocupado.");
+        }
 
-        Terreno terreno = getTerreno(x, y);
         terreno.plantar(new Cenoura());
         celeiro.consumirCenoura();
     }
 
     public void plantarMorango(int x, int y) {
-        if (celeiro.getQtdeMorangos() <= 0) {
+        Terreno terreno = getTerreno(x, y);
+
+        if (celeiro.getQtdeMorangos() == 0) {
             throw new RuntimeException("Não há morangos no celeiro.");
         }
+        if (terreno.estaOcupado()) {
+            throw new RuntimeException("O terreno já está ocupado.");
+        }
 
-        Terreno terreno = getTerreno(x, y);
         terreno.plantar(new Morango());
         celeiro.consumirMorango();
     }
 
     public Terreno getTerreno(int x, int y) {
         if (x < 0 || x >= 13 || y < 0 || y >= 13) {
-            throw new RuntimeException("Posição de terreno inválida.");
+            throw new RuntimeException("Posição inválida.");
         }
 
         return terrenos.get(x * 13 + y);
@@ -69,3 +81,4 @@ public class Fazenda {
         return terrenos;
     }
 }
+

@@ -1,6 +1,7 @@
 package br.com.joaocarloslima;
 
 public class Terreno {
+
     private Batata batata;
     private Cenoura cenoura;
     private Morango morango;
@@ -28,25 +29,34 @@ public class Terreno {
     }
 
     public void colher(Celeiro celeiro) {
-        if (batata != null && batata.podeColher()) {
+        if (batata != null) {
+            if (!batata.podeColher()) {
+                throw new RuntimeException("A batata ainda não está pronta para colher.");
+            }
             celeiro.armazenarBatata();
             batata = null;
             return;
         }
 
-        if (cenoura != null && cenoura.podeColher()) {
+        if (cenoura != null) {
+            if (!cenoura.podeColher()) {
+                throw new RuntimeException("A cenoura ainda não está pronta para colher.");
+            }
             celeiro.armazenarCenoura();
             cenoura = null;
             return;
         }
 
-        if (morango != null && morango.podeColher()) {
+        if (morango != null) {
+            if (!morango.podeColher()) {
+                throw new RuntimeException("O morango ainda não está pronto para colher.");
+            }
             celeiro.armazenarMorango();
             morango = null;
             return;
         }
 
-        throw new RuntimeException("Não há produto pronto para colher neste terreno.");
+        throw new RuntimeException("Não há produto plantado neste terreno.");
     }
 
     public boolean estaOcupado() {
